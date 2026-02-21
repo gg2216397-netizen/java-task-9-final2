@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple To Do List</title>
+  </head>
+
+  <body>
+    <h2>simple task</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter a task" />
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="removetask()">Remove Task</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+      function addTask() {
+        let taskText = document.getElementById("taskInput").value;
+
+        if (taskText === "") {
+          alert("Please enter a task");
+          return;
+        }
+
+        let li = document.createElement("li");
+
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+
+        li.appendChild(checkbox);
+        li.appendChild(document.createTextNode(" " + taskText));
+
+        document.getElementById("taskList").appendChild(li);
+
+        document.getElementById("taskInput").value = "";
+      }
+
+      function removetask() {
+        let list = document.getElementById("taskList");
+        let items = list.getElementsByTagName("li");
+
+        for (let i = items.length - 1; i >= 0; i--) {
+          let checkbox = items[i].querySelector("input");
+          if (checkbox.checked) {
+            
+            list.removeChild(items[i]);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
